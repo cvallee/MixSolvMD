@@ -1,0 +1,43 @@
+;
+;	File 'topol.top' was generated
+;	At date: Mon Jun  3 15:56:54 2024
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2023.1 (-:
+;	
+;	Command line:
+;	  gmx pdb2gmx -f 2d4u_dry.pdb -o pdb_converted.gro -ignh
+;	Force field was read from the standard GROMACS share directory.
+;
+
+; Include forcefield parameters
+#include "charmm36-jul2022.ff/forcefield.itp"
+
+; Include chain topologies
+#include "toppar/topol_Protein_chain_A.itp"
+#include "toppar/topol_Protein_chain_B.itp"
+
+; Include water topology
+#include "charmm36-jul2022.ff/tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "charmm36-jul2022.ff/ions.itp"
+
+[ system ]
+; Name
+METHYL-ACCEPTING CHEMOTAXIS PROTEIN I
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+Protein_chain_B     1
+LIG               212
