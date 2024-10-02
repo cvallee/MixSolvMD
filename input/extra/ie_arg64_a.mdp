@@ -1,0 +1,41 @@
+title                   = Production run
+integrator              = md
+dt                      = 0.002
+nsteps                  = 50000000	; 100 ns
+nstxtcout               = 0 		; no .xtc generated
+nstxout                 = 0			;
+nstvout                 = 0			; no .trr generated
+nstfout                 = 0 		;
+nstcalcenergy           = 25000 	; every 50 ps
+nstenergy               = 250000	; every 500 ps
+nstlog                  = 50000 	; every 100 ps
+energygrps				= LIG ARG64_A
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+coulombtype             = PME
+rcoulomb                = 1.2
+;
+tcoupl                  = V-rescale
+tc_grps                 = system
+tau_t                   = 1.0
+ref_t                   = 310.15
+;
+pcoupl                  = C-rescale
+pcoupltype              = isotropic
+tau_p                   = 5.0
+compressibility         = 4.5e-5
+ref_p                   = 1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = no
+gen-vel                 = yes		; needs -maxwarn 1 to work (please ignore the first 10 ns of the run)
+gen-temp                = 310.15
+gen-seed                = -1
+;
